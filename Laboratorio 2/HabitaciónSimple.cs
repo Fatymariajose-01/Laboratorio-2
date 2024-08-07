@@ -2,13 +2,17 @@
 
 namespace Laboratorio_2
 {
-    internal class HabitacionSimple : Habitación
+    public class HabitaciónSimple : Habitación
     {
         public int NumeroDeCamas { get; set; }
 
-        public HabitacionSimple(int numero, double precioPorNoche, bool disponible, string clienteAsignado, int numeroDeCamas)
-            : base(numero, precioPorNoche, disponible, clienteAsignado)
+        public HabitaciónSimple (int numero, double precioPorNoche, bool disponible, string clienteasignado, int numeroDeCamas)
+             : base(numero, precioPorNoche, disponible, clienteasignado)
         {
+            Numero = numero;
+            PrecioPorNoche = precioPorNoche;
+            Disponible = disponible;
+            ClienteAsignado = clienteasignado;
             NumeroDeCamas = numeroDeCamas;
         }
 

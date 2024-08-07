@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laboratorio_2
 {
-    internal class Habitación
+    public class Habitación
     {
         public int Numero { get; set; }
         public double PrecioPorNoche { get; set; }
