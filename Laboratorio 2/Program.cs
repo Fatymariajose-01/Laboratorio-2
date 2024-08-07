@@ -1,8 +1,129 @@
-﻿using Laboratorio_2;
+﻿using System;
+using System.Collections.Generic;
+using Laboratorio_2;
+
+public class Program
+{
+    private static List<Habitación> habitaciones = new List<Habitación>();
 
 
+    private static void AgregarHabitacion()
+    {
+        Console.WriteLine("Seleccionar Tipo de Habitación:");
+        Console.WriteLine("1. Habitación Simple");
+        Console.WriteLine("2. Habitación Doble");
+        Console.WriteLine("3. Suite");
+        Console.WriteLine("4. Habitación Deluxe");
+        Console.Write("Seleccione una opción: ");
+        int tipo = int.Parse(Console.ReadLine());
 
-Habitación Habi1 = new HabitaciónDoble(2, 20.00, true, "María Perez", true);
-Habi1.MostrarInformacion();
-Suite Suite1 = new Suite(2, 20,true,"Juanita", 2, true );
-Suite1.MostrarInformacion();
+        Console.Write("Número: ");
+        int numero = int.Parse(Console.ReadLine());
+        Console.Write("Precio por Noche: ");
+        double precio = double.Parse(Console.ReadLine());
+        Console.Write("Disponible (true/false): ");
+        bool disponible = bool.Parse(Console.ReadLine());
+        Console.WriteLine("Cliente Asignado: ");
+        string clienteA = Console.ReadLine();
+
+        switch (tipo)
+        {
+            case 1:
+                Console.Write("Número de Camas: ");
+                int camas = int.Parse(Console.ReadLine());
+                habitaciones.Add(new HabitaciónSimple(numero, precio, disponible, clienteA, camas));
+                break;
+            case 2:
+                Console.Write("Vista al Mar (true/false): ");
+                bool vistaAlMar = bool.Parse(Console.ReadLine());
+                habitaciones.Add(new HabitaciónDoble(numero, precio, disponible,clienteA, vistaAlMar));
+                break;
+            case 3:
+                Console.Write("Número de Habitaciones: ");
+                int numHabitaciones = int.Parse(Console.ReadLine());
+                Console.Write("Tiene Jacuzzi (true/false): ");
+                bool tieneJacuzzi = bool.Parse(Console.ReadLine());
+                habitaciones.Add(new Suite(numero, precio, disponible, clienteA, numHabitaciones, tieneJacuzzi));
+                break;
+            case 4:
+                Console.Write("Servicios Extras (Desayuno incluido, acceso al spa): ");
+                string serviciosExtras = Console.ReadLine();
+                habitaciones.Add(new Deluxe(numero, precio, disponible, clienteA, serviciosExtras));
+                break;
+            default:
+                Console.WriteLine("Tipo de habitación no válido.");
+                break;
+        }
+    }
+
+    private static void EliminarHabitacion()
+    {
+        Console.Write("Número de la habitación a eliminar: ");
+        int numero = int.Parse(Console.ReadLine());
+        Habitación habitacionARemover = habitaciones.Find(h => h.Numero == numero);
+
+        if (habitacionARemover != null)
+        {
+            habitaciones.Remove(habitacionARemover);
+            Console.WriteLine("Habitación eliminada.");
+        }
+        else
+        {
+            Console.WriteLine("Habitación no encontrada.");
+        }
+    }
+
+    private static void MostrarHabitaciones()
+    {
+        foreach (var habitacion in habitaciones)
+        {
+            habitacion.MostrarInformacion();
+            Console.WriteLine();
+        }
+    }
+
+    private static void AsignarHabitacion()
+    {
+        Console.Write("Número de la habitación a asignar: ");
+        int numero = int.Parse(Console.ReadLine());
+        Console.Write("Nombre del cliente: ");
+        string cliente = Console.ReadLine();
+
+        Habitación habitacion = habitaciones.Find(h => h.Numero == numero);
+
+        if (habitacion != null)
+        {
+            if (habitacion.Disponible)
+            {
+                habitacion.AsignarCliente(cliente);
+                Console.WriteLine("Habitación asignada.");
+            }
+            else
+            {
+                Console.WriteLine("La habitación no está disponible.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Habitación no encontrada.");
+        }
+    }
+
+    private static void LiberarHabitacion()
+    {
+        Console.Write("Número de la habitación a liberar: ");
+        int numero = int.Parse(Console.ReadLine());
+
+        Habitación habitacion = habitaciones.Find(h => h.Numero == numero);
+
+        if (habitacion != null)
+        {
+            habitacion.LiberarHabitacion();
+            Console.WriteLine("Habitación liberada.");
+        }
+        else
+        {
+            Console.WriteLine("Habitación no encontrada.");
+        }
+    }
+}
