@@ -6,6 +6,45 @@ public class Program
 {
     private static List<Habitación> habitaciones = new List<Habitación>();
 
+    public static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.WriteLine("Menú:");
+            Console.WriteLine("1. Agregar Habitación");
+            Console.WriteLine("2. Eliminar Habitación");
+            Console.WriteLine("3. Mostrar Habitaciones");
+            Console.WriteLine("4. Asignar Habitación a Cliente");
+            Console.WriteLine("5. Liberar Habitación");
+            Console.WriteLine("6. Salir");
+            Console.Write("Seleccione una opción: ");
+            int opcion = int.Parse(Console.ReadLine());
+
+            switch (opcion)
+            {
+                case 1:
+                    AgregarHabitacion();
+                    break;
+                case 2:
+                    EliminarHabitacion();
+                    break;
+                case 3:
+                    MostrarHabitaciones();
+                    break;
+                case 4:
+                    AsignarHabitacion();
+                    break;
+                case 5:
+                    LiberarHabitacion();
+                    break;
+                case 6:
+                    return;
+                default:
+                    Console.WriteLine("Opción no válida. Intente de nuevo.");
+                    break;
+            }
+        }
+    }
 
     private static void AgregarHabitacion()
     {
