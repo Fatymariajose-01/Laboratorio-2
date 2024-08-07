@@ -10,8 +10,8 @@ namespace Laboratorio_2
     public class HabitaciónDoble: Habitación
     {
         public bool VistaAlMar { get; set; }
-        public HabitaciónDoble(int numero, double precioPorNoche, bool disponible, string clienteAsignado, bool vistaAlMar)
-           : base(numero, precioPorNoche, disponible, clienteAsignado)
+        public HabitaciónDoble(int numero, double precioPorNoche, bool disponible, string clienteasignado, bool vistaAlMar)
+           : base(numero, precioPorNoche, disponible, clienteasignado)
         {
             VistaAlMar = vistaAlMar;
         }
